@@ -15,7 +15,7 @@ Generate histograms and Cumulative Distribution Function for random variables ge
 Simulation of the Gambler's Ruin.
 
 ### Exercise 1
-Given initial capital for two players (const) and a **changing probability p** of passing $1 from Player A to Player B, estimate the probability of loosing the capital by Player A **depending on p probability**.<br>
+Given the initial capital for two players = 50 (const) and a **changing probability p** of passing $1 from Player A to Player B, estimate the probability of loosing the capital by Player A **depending on p probability**.<br>
 Probability was estimated over 10 and 1000 games.
 ![probability of ruin A over p](./01-gamblers-ruin/images/ex-01.png)
 
@@ -23,3 +23,8 @@ Probability was estimated over 10 and 1000 games.
 Given the probability p of passing $1 from Player A to Player B = 0.5 (const) and a **changing capital of Players A and B** (such that `a + b = 100`), estimate the probability of loosing the capital by Player A **depending on initial capital**.<br>
 Probability was estimated over 10 and 1000 games.
 ![probability of ruin A over initial capital](./01-gamblers-ruin/images/ex-02.png)
+
+
+### Exercise 3
+Given the initial capital for two players = 50 (const) and a **changing probability `p = [0.2, 0.5, 0.8]`** of passing $1 from Player A to Player B, estimate the average number of rounds and its standard deviation **depending on p probability**.<br>
+![estimated game length over p](./01-gamblers-ruin/images/ex-03.png)
