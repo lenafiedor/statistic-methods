@@ -53,27 +53,53 @@ if __name__ == '__main__':
     NUM_GAMES_LONG = 1000
     NUM_GAMES_EXTRA_LONG = 1000000
 
-    # set initial capitals and define probabilities
-    a_initial = 50
-    b_initial = 50
-    p_values = np.arange(0.0, 1.0, 0.1)
+    # # EXERCISE 1
+    # # set initial capitals and define probabilities
+    # a_initial = 50
+    # b_initial = 50
+    # p_values = np.arange(0.0, 1.0, 0.1)
+
+    # # run the short simulation (averaging over 10 games)
+    # ruin_count_short = [estimate_ruin_probability(NUM_GAMES_SHORT, a_initial, b_initial, p) for p in p_values]
+
+    # # run the long simulation (averaging over 1000 games)
+    # ruin_count_long = [estimate_ruin_probability(NUM_GAMES_LONG, a_initial, b_initial, p) for p in p_values]
+
+    # # plot the probabilites
+    # plt.figure(figsize=(12, 6))
+
+    # plt.plot(p_values, ruin_count_short, label=f'{NUM_GAMES_SHORT} games (low averaging)', marker='o', color='#A88C8C')
+    # plt.plot(p_values, ruin_count_long, label=f'{NUM_GAMES_LONG} games (high averaging)', marker='o', color='#82799B')
+
+    # plt.xlabel('Probability value (p)')
+    # plt.ylabel('P(ruin A)')
+    # plt.legend()
+    # plt.grid()
+    # plt.title('Probability of ruin A over p probability')
+    
+    # plt.savefig('./images/ex-01')
+
+    # EXERCISE 2
+    # set initial capitals and probability
+    a_initial = np.arange(10, 100, 10)
+    p = 0.5
 
     # run the short simulation (averaging over 10 games)
-    ruin_count_short = [estimate_ruin_probability(NUM_GAMES_SHORT, a_initial, b_initial, p) for p in p_values]
+    ruin_count_short = [estimate_ruin_probability(NUM_GAMES_SHORT, a, 100 - a, p) for a in a_initial]
 
     # run the long simulation (averaging over 1000 games)
-    ruin_count_long = [estimate_ruin_probability(NUM_GAMES_LONG, a_initial, b_initial, p) for p in p_values]
+    ruin_count_long = [estimate_ruin_probability(NUM_GAMES_SHORT, a, 100 - a, p) for a in a_initial]
 
     # plot the probabilites
     plt.figure(figsize=(12, 6))
 
-    plt.plot(p_values, ruin_count_short, label=f'{NUM_GAMES_SHORT} games (low averaging)', marker='o', color='#A88C8C')
-    plt.plot(p_values, ruin_count_long, label=f'{NUM_GAMES_LONG} games (high averaging)', marker='o', color='#82799B')
+    plt.plot(a_initial, ruin_count_short, label=f'{NUM_GAMES_SHORT} games (low averaging)', marker='o', color='#A88C8C')
+    plt.plot(a_initial, ruin_count_long, label=f'{NUM_GAMES_LONG} games (high averaging)', marker='o', color='#82799B')
 
-    plt.xlabel('Probability value (p)')
+    plt.xlabel('Initial capital of Player A')
     plt.ylabel('P(ruin A)')
     plt.legend()
     plt.grid()
-    plt.title('Probability of ruin A over p probability')
+    plt.title('Probability of ruin A over initial capital')
     
-    plt.savefig('./images/probability-of-ruin-a')
+    plt.savefig('./images/ex-02')
