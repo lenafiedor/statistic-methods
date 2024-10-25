@@ -28,6 +28,8 @@ if __name__ == '__main__':
         num_rounds_stdev_long.append(stdev_length)
 
     # plot the probabilites
+    plt.figure(figsize=(12, 6))
+    
     plt.errorbar(p_values, num_rounds_mean_short, yerr=num_rounds_stdev_short, label=f'{NUM_GAMES_SHORT} games (low averaging)', marker='o', color='#A88C8C', capsize=5)
     plt.errorbar(p_values, num_rounds_mean_long, yerr=num_rounds_stdev_long, label=f'{NUM_GAMES_LONG} games (high averaging)', marker='o', color='#82799B', capsize=5)
 
