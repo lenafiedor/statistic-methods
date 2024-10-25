@@ -27,3 +27,4 @@ Probability was estimated over 10 and 1000 games.
 
 ### Exercise 3
 Given the initial capital for two players = 50 (const) and a **changing probability `p = [0.2, 0.5, 0.8]`** of passing $1 from Player A to Player B, estimate the average number of rounds and its standard deviation **depending on p probability**.<br>
+![estimated game length over p](./01-gamblers-ruin/images/ex-03.png)
