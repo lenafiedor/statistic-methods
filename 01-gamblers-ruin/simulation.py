@@ -74,4 +74,4 @@ def estimate_game_length(num_games: int, a_initial: int, b_initial: int, p: floa
     '''
 
     game_lengths = [simulate_ruin(a_initial, b_initial, p)[1] for _ in range(num_games)]
-    return np.mean(game_lengths), np.std(game_lengths)
+    return game_lengths, np.mean(game_lengths), np.std(game_lengths)

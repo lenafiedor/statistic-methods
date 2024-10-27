@@ -10,33 +10,48 @@ if __name__ == '__main__':
     p_values = [0.2, 0.5, 0.8]
 
     # run the short simulation (averaging over 10 games)
+    num_rounds_short = []
     num_rounds_mean_short = []
     num_rounds_stdev_short = []
     
     for p in p_values:
-        mean_length, stdev_length = estimate_game_length(NUM_GAMES_SHORT, a_initial, b_initial, p)
+        num_rounds, mean_length, stdev_length = estimate_game_length(NUM_GAMES_SHORT, a_initial, b_initial, p)
+        num_rounds_short.append(num_rounds)
         num_rounds_mean_short.append(mean_length)
         num_rounds_stdev_short.append(stdev_length)
 
     # run the long simulation (averaging over 1000 games)
+    num_rounds_long = []
     num_rounds_mean_long = []
     num_rounds_stdev_long = []
 
     for p in p_values:
-        mean_length, stdev_length = estimate_game_length(NUM_GAMES_LONG, a_initial, b_initial, p)
+        num_rounds, mean_length, stdev_length = estimate_game_length(NUM_GAMES_LONG, a_initial, b_initial, p)
+        num_rounds_long.append(num_rounds)
         num_rounds_mean_long.append(mean_length)
         num_rounds_stdev_long.append(stdev_length)
 
-    # plot the probabilites
-    plt.figure(figsize=(12, 6))
-    
-    plt.errorbar(p_values, num_rounds_mean_short, yerr=num_rounds_stdev_short, label=f'{NUM_GAMES_SHORT} games (low averaging)', marker='o', color='#A88C8C', capsize=5)
-    plt.errorbar(p_values, num_rounds_mean_long, yerr=num_rounds_stdev_long, label=f'{NUM_GAMES_LONG} games (high averaging)', marker='o', color='#82799B', capsize=5)
+    fig, axes = plt.subplots(2, 3, figsize=(18, 10))
 
-    plt.xlabel('Probability value (p)')
-    plt.ylabel('Game length (number of rounds)')
-    plt.legend()
-    plt.grid()
-    plt.title('Average number of rounds over p probability')
+    for ax, p, lengths, mean, stdev in zip(axes[0], p_values, num_rounds_short, num_rounds_mean_short, num_rounds_stdev_short):
+        ax.hist(lengths, bins=50, color='#A88C8C', edgecolor='black', alpha=0.7, density=True)
+        ax.set_title(f'Short simulation (p = {p})')
+        ax.set_xlabel('Game length')
+        ax.set_ylabel('Probability')
+        ax.text(0.95, 0.95, f'Mean: {mean:.2f}\nStd dev: {stdev:.2f}', 
+            transform=ax.transAxes, fontsize=10, verticalalignment='top', horizontalalignment='right',
+            bbox=dict(facecolor='white', edgecolor='black', boxstyle='round, pad=0.3', alpha=0.8))
+        
+    for ax, p, lengths, mean, stdev in zip(axes[1], p_values, num_rounds_long, num_rounds_mean_long, num_rounds_stdev_long):
+        ax.hist(lengths, bins=50, color='#82799B', edgecolor='black', alpha=0.7, density=True)
+        ax.set_title(f'Long simulation (p = {p})')
+        ax.set_xlabel('Game length')
+        ax.set_ylabel('Probability')
+        ax.text(0.95, 0.95, f'Mean: {mean:.2f}\nStd dev: {stdev:.2f}', 
+            transform=ax.transAxes, fontsize=10, verticalalignment='top', horizontalalignment='right',
+            bbox=dict(facecolor='white', edgecolor='black', boxstyle='round, pad=0.3', alpha=0.8))
 
+    plt.suptitle('Distribution of the game lenght over p probability')
+    plt.tight_layout(pad=3.0)
+    plt.subplots_adjust(left=0.05, right=0.95, top=0.85, bottom=0.15, wspace=0.3)
     plt.savefig('./images/ex-03')
