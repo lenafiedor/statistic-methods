@@ -5,7 +5,7 @@ NUM_GAMES_SHORT = 10
 NUM_GAMES_LONG = 1000
 
 
-def simulate_ruin(a_initial: int, b_initial: int, p: float) -> tuple:
+def simulate_ruin(a_initial: int, b_initial: int, p: float, stop: float = float('inf')) -> tuple:
 
     '''
     Simulates the ruin process between two players with initial capital values.
@@ -14,18 +14,19 @@ def simulate_ruin(a_initial: int, b_initial: int, p: float) -> tuple:
         a_initial (int): Initial capital of player A.
         b_initial (int): Initial capital of player B.
         p (float): Probability that player A wins $1 from player B.
+        stop (float): Number of rounds after which to stop the game.
 
     Returns:
         tuple:
             - bool: True if player A goes bankrupt (capital reaches 0), otherwise False.
             - int: Total number of rounds played before one player goes bankrupt.
-
+            - int: Capital of player A after n steps if stop value was specified.
     '''
 
     a, b = a_initial, b_initial
     count = 0
 
-    while a > 0 and b > 0:
+    while a > 0 and b > 0 and count < stop:
 
         count += 1
         if np.random.rand() < p:
@@ -35,7 +36,7 @@ def simulate_ruin(a_initial: int, b_initial: int, p: float) -> tuple:
             a -= 1
             b += 1
     
-    return not a, count
+    return not a, count, a
 
 def estimate_ruin_probability(num_games: int, a_initial: int, b_initial: int, p: float) -> float:
 
@@ -74,4 +75,16 @@ def estimate_game_length(num_games: int, a_initial: int, b_initial: int, p: floa
     '''
 
     game_lengths = [simulate_ruin(a_initial, b_initial, p)[1] for _ in range(num_games)]
-    return game_lengths, np.mean(game_lengths), np.std(game_lengths)
+    return game_lengths, int(np.mean(game_lengths)), np.std(game_lengths)
+
+def estimate_capital_distribution(num_games: int, a_initial: int, b_initial: int, n_values: list, p_values: list):
+
+    '''
+    Estimates the final capital of player A after specified number of rounds for the given probabilities.
+
+    Returns:
+        list: Embedded list of lists of lists containg final capitals (int) of player for the given p probability and n n number of rounds.
+    '''
+
+    final_capitals = [[[simulate_ruin(a_initial, b_initial, p, n)[2] for _ in range(num_games)] for n in n_tuple] for p, n_tuple in zip(p_values, n_values)]
+    return final_capitals

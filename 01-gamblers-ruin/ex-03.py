@@ -31,6 +31,7 @@ if __name__ == '__main__':
         num_rounds_mean_long.append(mean_length)
         num_rounds_stdev_long.append(stdev_length)
 
+    # plot the histograms
     fig, axes = plt.subplots(2, 3, figsize=(18, 10))
 
     for ax, p, lengths, mean, stdev in zip(axes[0], p_values, num_rounds_short, num_rounds_mean_short, num_rounds_stdev_short):
@@ -38,7 +39,7 @@ if __name__ == '__main__':
         ax.set_title(f'Short simulation (p = {p})')
         ax.set_xlabel('Game length')
         ax.set_ylabel('Probability')
-        ax.text(0.95, 0.95, f'Mean: {mean:.2f}\nStd dev: {stdev:.2f}', 
+        ax.text(0.95, 0.95, f'Mean: {mean}\nStd dev: {stdev:.2f}', 
             transform=ax.transAxes, fontsize=10, verticalalignment='top', horizontalalignment='right',
             bbox=dict(facecolor='white', edgecolor='black', boxstyle='round, pad=0.3', alpha=0.8))
         
@@ -47,7 +48,7 @@ if __name__ == '__main__':
         ax.set_title(f'Long simulation (p = {p})')
         ax.set_xlabel('Game length')
         ax.set_ylabel('Probability')
-        ax.text(0.95, 0.95, f'Mean: {mean:.2f}\nStd dev: {stdev:.2f}', 
+        ax.text(0.95, 0.95, f'Mean: {mean}\nStd dev: {stdev:.2f}', 
             transform=ax.transAxes, fontsize=10, verticalalignment='top', horizontalalignment='right',
             bbox=dict(facecolor='white', edgecolor='black', boxstyle='round, pad=0.3', alpha=0.8))
 

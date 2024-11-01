@@ -5,6 +5,7 @@ from simulation import *
 
 if __name__ == '__main__':
 
+    # define the number of games, set initial capitals and define probabilities
     NUM_GAMES = 100
 
     a_initial = 50
