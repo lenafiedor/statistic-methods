@@ -26,9 +26,13 @@ Probability was estimated over 10 and 1000 games.
 
 
 ### Exercise 3
-Given the initial capital for two players = 50 (const) and a **changing probability `p = [0.2, 0.5, 0.8]`** of passing $1 from Player A to Player B, create the distribution of game length probabilities **depending on p probability**.<br>
+Given the initial capital for two players = 50 (const) and a **changing probability `p = [0.2, 0.5, 0.8]`** of passing $1 from Player A to Player B, create the distribution of game length probabilities **depending on p probability**.
 ![game length probability distribution](./01-gamblers-ruin/images/ex-03.png)
 
 ### Exercise 4
-Given the initial capital for two players = 50 (const) and a **changing probability p** of passing $1 from Player A to Player B, estimate the average game length **depending on p probability**.<br>
+Given the initial capital for two players = 50 (const) and a **changing probability p** of passing $1 from Player A to Player B, estimate the average game length **depending on p probability**.
 ![average game length over p](./01-gamblers-ruin/images/ex-04.png)
+
+### Exercise 5
+Given the initial capital for two players = 50 (const), **changing probability p `p = [0.2, 0.5]`** of passing $1 from Player A to Player B and **three cases of number of steps `n = [10, l_mean / 2, 0.9 * l_mean]`, where `l_mean` is the mean game length for given p value**, generate the distribution of the final capital of Player A **depending on p and n values**.
+![final capital over p and n](./01-gamblers-ruin/images/ex-05.png)
