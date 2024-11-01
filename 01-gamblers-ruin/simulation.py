@@ -80,10 +80,22 @@ def estimate_game_length(num_games: int, a_initial: int, b_initial: int, p: floa
 def estimate_capital_distribution(num_games: int, a_initial: int, b_initial: int, n_values: list, p_values: list):
 
     '''
-    Estimates the final capital of player A after specified number of rounds for the given probabilities.
+    Simulates multiple games to estimate the distribution of final capital for Player A over a specified number of rounds 
+    and for various probabilities of Player A's success.
+
+    Parameters:
+        num_games (int): The number of games to simulate for each combination of initial capital and probability.
+        a_initial (int): The starting capital for Player A.
+        b_initial (int): The starting capital for Player B.
+        n_values (list): A list of tuples, each containing three round counts (n) for which final capital is estimated.
+        p_values (list): A list of probabilities representing the likelihood of Player A winning each round.
 
     Returns:
-        list: Embedded list of lists of lists containg final capitals (int) of player for the given p probability and n n number of rounds.
+        list: A 3D list containing the final capital values of Player A for each probability and each round count. 
+            Structure: `final_capitals[i][j][k]` where:
+            - `i` indexes the probability `p` from `p_values`,
+            - `j` indexes the round count `n` from `n_values[i]`,
+            - `k` indexes the individual game outcome for that combination.
     '''
 
     final_capitals = [[[simulate_ruin(a_initial, b_initial, p, n)[2] for _ in range(num_games)] for n in n_tuple] for p, n_tuple in zip(p_values, n_values)]
