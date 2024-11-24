@@ -39,3 +39,10 @@ Given the initial capital for two players `a = b = 50`, **changing probability p
 ### Exercise 6
 Given a sample of **chosen intitial capitals (such that `a + b = 100`) and p probabilities**, generate **trajectories of wins for both players over the number of games (counting processes)**.
 ![trajectories of wins for a and b](./01-gamblers-ruin/images/ex-06.png)
+
+### Exercise 7
+Reproduce exercises 1, 2, 3, 6 in a multiplayer version **(number of players = 5)**.
+![ex 1 multiplayer](./01-gamblers-ruin/images/ex-07-1.png)
+![ex 2 multiplayer](./01-gamblers-ruin/images/ex-07-2.png)
+![ex 3 multiplayer](./01-gamblers-ruin/images/ex-07-3.png)
+![ex 6 multiplayer](./01-gamblers-ruin/images/ex-07-6.png)
