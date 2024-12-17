@@ -46,3 +46,18 @@ Reproduce exercises 1, 2, 3, 6 in a multiplayer version **(number of players = 5
 ![ex 2 multiplayer](./01-gamblers-ruin/images/ex-07-2.png)
 ![ex 3 multiplayer](./01-gamblers-ruin/images/ex-07-3.png)
 ![ex 6 multiplayer](./01-gamblers-ruin/images/ex-07-6.png)
+
+## 02-markov-chains
+Some exercises for Markov chains.
+
+### Exercise 8
+Given a transition matrix P for a three-state Markov chain, calculate the stationary state vector.
+Find the number of iterations after which further matrix multiplications stabilize.
+Finally, plot the change in the matrix norm across iterations.
+![convergence over iterations](./02-markov-chains/images/ex-08.png)
+
+### Exercise 9
+Simulate the process from the previous task: Choose an initial state for the "agent" and iteratively change the agent's position according to the transition matrix.
+For each initial state separately, repeat this simulation 10000 times, and then estimate the stationary state.<br>
+Compare this result with the theoretical stationary state `Π = [0.5102, 0.4082, 0.0816]`.
+![simulated vs theoretical steady states](./02-markov-chains/images/ex-09.png)
